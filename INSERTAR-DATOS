@@ -1,0 +1,85 @@
+-- Insertar datos en la tabla Planes
+
+INSERT INTO Planes (Nombre_plan, Anio_vigencia) VALUES
+('Plan 2020', '2020'),
+('Plan 2021', '2021'),
+('Plan 2022', '2022'),
+('Plan 2023', '2023');
+
+-- Insertar datos en la tabla Carreras
+
+INSERT INTO Carreras (Nombre, Descripcion, Resolucion_ministerial, id_plan_de_estudio) VALUES
+('Tecnicatura Superior en Análisis de Sistemas', 'Carrera de Informática', 'RM1234', 1),
+('Tecnicatura Superior en Administración y Gestión de las empresas', 'Carrera contable', 'RM5678', 2),
+('Tecnicatura en Bioseguridad, Higiene y Seguridad', 'Carrera de seguridad y salud ocupacional ', 'RM9101', 3);
+
+-- Insertar datos en la tabla Estudiantes
+
+INSERT INTO Estudiantes (Nombre, Apellido, Fecha_nacimiento, Direccion, Telefono, Email, id_carrera) VALUES
+('Danzel', 'Burky', '2000-01-01', 'Calle Junin 123', '123456789', 'danzel.burky@gmail.com', 1),
+('Franco', 'Nielsen', '1999-02-02', 'Avenida America 456', '987654321', 'nielsen@gmail.com', 2),
+('Carlos', 'Rodríguez', '1998-03-03', 'Boulevard Central 789', '1122334455', 'carlos.rodriguez1@gmail.com', 3),
+('Mariano', 'Villalba', '1997-04-04', 'Calle ituzaingo 101', '6677889900', 'villalba.1@gmail.com', 2),
+('Florencia', 'Villalba', '1993-04-04', 'Calle bustamante 101', '66778899', 'florenciavill@gmail.com', 3);
+
+-- Insertar datos en la tabla Materias
+
+INSERT INTO Materias (Nombre, Anio_cursado, Plan_de_estudio, id_carrera) VALUES 
+('Base de datos', '2º', 'Plan 2024', 1),
+('Programación II', '2º', 'Plan 2025', 1),
+('Matemática financiera', '3º', 'Plan 2025', 2),
+('Administración', '3º', 'Plan 2025', 2),
+('Bioseguridad', '1º', 'Plan 2023', 3);
+
+--Insertar datos en la tabla correlatividades
+INSERT INTO Correlatividades (id_materia) VALUES 
+(2),
+(2),
+(1),
+(1),
+(3);
+
+--Insertar datos en la tabla Inscripciones
+INSERT INTO Inscripciones (Estado, Fecha_inscripcion, id_estudiante, id_materia) VALUES 
+('Activa', '2024-07-05', 2, 2),
+('Finalizada', '2024-07-10', 3, 1),
+('Activa', '2024-07-08', 1, 3);
+
+
+--Insertar datos en la tabla Tipo_notas
+INSERT INTO Tipo_notas (Descripcion)VALUES 
+('Parcial'),
+('Final'),
+('Recuperatorio');
+
+-- Insertar datos en la tabla Notas
+INSERT INTO Notas (Valor, id_tipo_nota, id_inscripcion)VALUES 
+(7.8, 1, 4),
+(9.2, 2, 5),
+(4, 3, 6),
+(3, 3, 4),
+(8.5, 1, 5);
+
+--Insertar datos en la tabla Mesas
+INSERT INTO Mesas (Fecha_hora, inicio_inscripcion, fin_inscripcion) VALUES 
+('2023-09-15 09:00:00', '2023-08-20', '2023-09-05'),
+('2023-10-20 14:00:00', '2023-09-25', '2023-10-10'),
+('2023-11-10 10:00:00', '2023-10-15', '2023-11-01');
+
+--Insertar datos en la tabla Actas
+INSERT INTO Actas (Resultado, fecha_examen, id_mesa)VALUES 
+('Aprobado', '2023-09-15', 1),
+('Aprobado', '2023-10-20', 2),
+('Desaprobado', '2023-11-10', 3),
+('Desaprobado', '2023-09-15', 3),
+('Aprobado', '2023-09-15', 2);
+
+--Insertar datos en la tabla Estudiantes Mesas
+INSERT INTO Estudiantes_mesas (id_mesa, id_estudiante)VALUES 
+(1, 1),
+(2, 2),
+(3, 3);
+
+
+
+

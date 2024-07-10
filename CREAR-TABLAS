@@ -1,0 +1,118 @@
+
+--CREAR TABLA PLANES
+
+CREATE TABLE Planes (
+id_plan_de_estudio SERIAL PRIMARY KEY,
+Nombre_plan varchar (30),
+Anio_vigencia varchar (20)
+);
+
+-- CREAR TABLA CARRERAS
+
+CREATE TABLE Carreras (
+id_carrera SERIAL PRIMARY KEY,
+Nombre varchar (100),
+Descripcion varchar (100),
+Resolucion_ministerial varchar (50),
+id_plan_de_estudio INTEGER,
+FOREIGN KEY (id_plan_de_estudio) REFERENCES Planes(id_plan_de_estudio)
+);
+
+--CREAR TABLA ESTUDIANTES
+
+CREATE TABLE Estudiantes (
+id_estudiante SERIAL PRIMARY KEY,
+Nombre varchar (30),
+Apellido varchar (30),
+Fecha_nacimiento date,
+Direccion varchar (60),
+Telefono varchar (20),
+Email varchar (60),
+id_carrera integer,
+FOREIGN KEY (id_carrera) REFERENCES Carreras(id_carrera)
+);
+
+
+--CREAR TABLA MATERIAS
+
+CREATE TABLE Materias (
+id_materia SERIAL PRIMARY KEY,
+Nombre varchar (30),
+Anio_cursado varchar (10),
+Plan_de_estudio varchar (20),
+id_carrera integer,
+FOREIGN KEY (id_carrera) REFERENCES Carreras (id_carrera)
+);
+
+
+--CREAR TABLA CORRELATIVIDADES
+
+CREATE TABLE Correlatividades (
+id_correlatividad SERIAL PRIMARY KEY,
+id_materia integer,
+FOREIGN KEY (id_materia) REFERENCES Materias (id_materia)
+);
+
+--CREAR TABLA INSCRIPCIONES
+
+CREATE TABLE Inscripciones (
+id_inscripcion SERIAL PRIMARY KEY ,
+Estado varchar (20),
+Fecha_inscripcion date,
+id_estudiante integer,
+id_materia integer,
+FOREIGN KEY (id_estudiante) REFERENCES Estudiantes (id_estudiante),
+FOREIGN KEY (id_materia) REFERENCES Materias (id_materia)
+);
+
+
+--CREAR TABLA NOTAS
+
+CREATE TABLE Notas (
+id_nota SERIAL PRIMARY KEY,
+Valor decimal,
+id_tipo_nota integer,
+id_inscripcion integer,
+FOREIGN KEY (id_tipo_nota) REFERENCES tipo_notas (id_tipo_nota),
+FOREIGN KEY (id_inscripcion) REFERENCES Inscripciones (id_inscripcion)
+);
+
+--CREAR TABLA TIPO NOTAS
+
+CREATE TABLE Tipo_notas (
+id_tipo_nota SERIAL PRIMARY KEY,
+Descripcion varchar (50)
+);
+
+-- CREAR TABLA MESAS
+
+CREATE TABLE Mesas (
+id_mesa SERIAL PRIMARY KEY,
+Fecha_hora timestamp,
+inicio_inscripcion varchar (20),
+fin_inscripcion varchar (20)
+);
+
+
+--CREAR TABLA ACTAS
+
+CREATE TABLE Actas (
+id_acta SERIAL PRIMARY KEY,
+Resultado varchar (20),
+fecha_examen date,
+id_mesa integer,
+FOREIGN KEY (id_mesa) REFERENCES Mesas(id_mesa)
+);
+
+--CREAR TABLA ESTUDIANTES MESAS
+
+
+CREATE TABLE Estudiantes_mesas (
+id_estudiante_mesa SERIAL PRIMARY KEY,
+id_mesa integer,
+id_estudiante integer,
+FOREIGN KEY (id_mesa) REFERENCES Mesas(id_mesa),
+FOREIGN KEY (id_estudiante) REFERENCES Estudiantes (id_estudiante)
+);
+
+
