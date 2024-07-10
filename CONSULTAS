@@ -1,0 +1,20 @@
+--Listar estudiantes de una carrera específica
+
+SELECT Nombre, Apellido
+FROM Estudiantes
+WHERE id_carrera = 2
+ORDER BY Apellido, Nombre;
+
+--Listar inscripciones activas de un estudiante
+
+SELECT id_inscripcion, Estado, Fecha_inscripcion
+FROM Inscripciones
+WHERE id_estudiante = 2 AND Estado = 'Activa'
+ORDER BY Fecha_inscripcion DESC;
+
+--Obtener actas de exámenes aprobados en una fecha determinada
+
+SELECT id_acta, Resultado, fecha_examen
+FROM Actas
+WHERE Resultado = 'Aprobado' AND fecha_examen = '2023-09-15'
+ORDER BY id_acta;
